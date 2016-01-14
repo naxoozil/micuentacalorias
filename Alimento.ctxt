@@ -17,4 +17,6 @@ comment4.text=\r\n\ Nos\ devuelve\ las\ calor\u00EDas\ que\ tiene\ el\ alimento\
 comment5.params=
 comment5.target=void\ muestraDatos()
 comment5.text=\r\n\ Este\ m\u00E9todo\ nos\ muestra\ los\ valores\ de\ los\ distintos\ componentes\ del\ alimento\ \r\n
-numComments=6
+comment6.params=
+comment6.target=java.lang.String\ getNombre()
+numComments=7

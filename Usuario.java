@@ -10,6 +10,10 @@ public class Usuario
     private float grasasIngeridas;
     //calorias totales ingeridas por el usuario
     private float caloriasIngeridas;
+    //guarda el nombre del alimento mas calorico
+    private Alimento alimentoMasCalorico;
+    //guarda las calorias del alimeto mas calorico
+    private float calAlimentoCalorico;
 
     /**
     *Constructor de la clase usuario
@@ -32,6 +36,19 @@ public class Usuario
         carbohidratosIngeridos = carbohidratosIngeridos + (alimentoQueCome.getCarbohidratos() / 100 * gramosDelAlimento);
         grasasIngeridas = grasasIngeridas + (alimentoQueCome.getGrasas() / 100 * gramosDelAlimento);
         caloriasIngeridas = caloriasIngeridas + (alimentoQueCome.getCalorias() / 100 * gramosDelAlimento);
+        
+        if (alimentoMasCalorico == null){
+            alimentoMasCalorico = alimentoQueCome;
+        }
+        else{
+            calAlimentoCalorico = alimentoMasCalorico.getCalorias();
+            if (calAlimentoCalorico == caloriasIngeridas){
+                alimentoQueCome = alimentoMasCalorico;
+            }
+            else if (calAlimentoCalorico < caloriasIngeridas){
+                alimentoQueCome = alimentoMasCalorico;
+            }
+        }
     }
     
     /**
@@ -59,11 +76,17 @@ public class Usuario
         System.out.println("Calorias totales ingeridas:                " + caloriasIngeridas);  
     }
 
+    /**
+     * Method that gets the name of the food
+     */
     public String getNombre()
     {
         return nombreCompleto;
     }
-        
+     
+    /**
+     * Method that gets the calories of the food
+     */
     public float getCalorias()
     {
         return caloriasIngeridas;
@@ -89,6 +112,19 @@ public class Usuario
         if(caloriasSegundoUsuario > caloriasIngeridas){
             System.out.println(nombreSegundoUsuario + " ha consumido más calorias que " + nombreCompleto + "." + 
             " (" + caloriasSegundoUsuario + " frente a " + caloriasIngeridas + ")");
+        }
+    }
+    
+    /**
+     * Method that show the food with the most calories
+     */
+    public void alimentoMasCalorico()
+    {
+        if (alimentoMasCalorico != null){
+            System.out.println("Alimento más calórico ingerido por este usuario hasta el momento es el/la " + alimentoMasCalorico.getNombre());
+        }
+        else{
+            System.out.println("No se han consumido alimentos hasta el momento");
         }
     }
 }
