@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class Usuario
 {
-        //nombre del usuario
+    //nombre del usuario
     private String nombreCompleto;
     //proteinas  ingeridas por el usuario
     private float proteinasIngeridas;
@@ -14,6 +16,8 @@ public class Usuario
     private Alimento alimentoMasCalorico;
     //guarda las calorias del alimeto mas calorico
     private float calAlimentoCalorico;
+    // Una Arraylist para guardar el orden de comida de alimentos de los alimentos
+    private ArrayList<Alimento> alimento;
 
     /**
     *Constructor de la clase usuario
@@ -25,6 +29,7 @@ public class Usuario
         carbohidratosIngeridos = 0;
         grasasIngeridas = 0;
         caloriasIngeridas = 0;
+        alimento = new ArrayList<Alimento>();
     }
     
     /**
@@ -43,12 +48,13 @@ public class Usuario
         else{
             calAlimentoCalorico = alimentoMasCalorico.getCalorias();
             if (calAlimentoCalorico == caloriasIngeridas){
-                alimentoQueCome = alimentoMasCalorico;
+                alimentoMasCalorico = alimentoQueCome;
             }
             else if (calAlimentoCalorico < caloriasIngeridas){
-                alimentoQueCome = alimentoMasCalorico;
+                alimentoMasCalorico = alimentoQueCome;
             }
         }
+        alimento.add(alimentoQueCome);
     }
     
     /**
@@ -121,10 +127,25 @@ public class Usuario
     public void alimentoMasCalorico()
     {
         if (alimentoMasCalorico != null){
-            System.out.println("Alimento más calórico ingerido por este usuario hasta el momento es el/la " + alimentoMasCalorico.getNombre());
+            System.out.println("Alimento más calórico ingerido por este usuario hasta el momento es el/la " + alimentoMasCalorico.getNombre() + " ( " + alimentoMasCalorico.getCalorias() + " calorias.)");
         }
         else{
             System.out.println("No se han consumido alimentos hasta el momento");
         }
     }
+    
+    /**
+     * Metodo que muestra los datos nutricionales del alimento consumido en una posicion determinada
+     */
+    public void datosNutricionalesAlimento(int numeroDeAlimentos)
+    {
+        if (numeroDeAlimentos < alimento.size()){
+            alimentoQueCome.muestraDatos();
+        }
+    }
 }
+
+
+
+
+
